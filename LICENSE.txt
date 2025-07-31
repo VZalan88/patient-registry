@@ -1,0 +1,6 @@
+Copyright (c) 2025 Zalan Sandor Vitalis
+All rights reserved.
+
+This source code is provided solely for the purpose of technical evaluation in connection with a job application.
+
+Redistribution, modification, commercial use, or inclusion in any production or enterprise environment is strictly prohibited without prior written permission.
