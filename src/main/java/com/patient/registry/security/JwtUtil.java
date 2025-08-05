@@ -11,6 +11,7 @@ import java.util.List;
 
 @Component
 public class JwtUtil {
+    //ToDo: Move secret to application property and inject with @Value
     private static final String SECRET = "6f162db5934977ef21512d8be0b4bea9a5604b9a6b6908a1bff83d53f77e13b9ec5735c5f0bd8757f0239c6371de7cc8881e013cdd8982a9e2b8f6ca758cd60e";
     private static final long EXPIRATION = 24 * 60 * 60 * 1000; // 24 hours
 
