@@ -1,0 +1,910 @@
+{
+	"info": {
+		"_postman_id": "7a2708b1-1ca8-4c2b-ba73-2b21c284b6cb",
+		"name": "Patient Registry API",
+		"description": "Basic tests for FHIR Patient Registry API endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3780249"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"writer\",\r\n  \"password\": \"writerpass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "login-200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"writer\",\r\n  \"password\": \"writerpass\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Aug 2025 01:04:39 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3cml0ZXIiLCJyb2xlcyI6WyJXUklURSJdLCJpYXQiOjE3NTQzNTU4NzksImV4cCI6MTc1NDQ0MjI3OX0.K9boBbBKFT3ZkM9s_R2t3oleGUjG01lOM1FXoX3QAPbDj_xs7mvZA6j5jHhAb7djnvOGzF6mJs6mz2oBAwmycw\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Organization",
+			"item": [
+				{
+					"name": "Create Organization",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3cml0ZXIiLCJyb2xlcyI6WyJXUklURSJdLCJpYXQiOjE3NTQzNTU2MTAsImV4cCI6MTc1NDQ0MjAxMH0.YHTJ5EwleUXFSyPpdWFplnYgufPkOPc8brK2M2uvsUwT4doKO22ZeB45Td0ZB5r-lHnh_Uoq3o19m8zGY6JGHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"resourceType\": \"Organization\",\n    \"id\": \"org-1\",\n    \"identifier\": [\n        {\n            \"value\": \"org-1\"\n        }\n    ],\n    \"name\": \"Organization1\",\n    \"telecom\": [\n        {\n            \"system\": \"phone\",\n            \"value\": \"333-3333\"\n        }\n    ],\n    \"address\": [\n        {\n            \"text\": \"Townlong Street 456, Boston\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/fhir/r4/Organization",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fhir",
+								"r4",
+								"Organization"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Organization-200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"resourceType\": \"Organization\",\n    \"id\": \"org-1\",\n    \"identifier\": [\n        {\n            \"value\": \"org-1\"\n        }\n    ],\n    \"name\": \"Organization1\",\n    \"telecom\": [\n        {\n            \"system\": \"phone\",\n            \"value\": \"333-3333\"\n        }\n    ],\n    \"address\": [\n        {\n            \"text\": \"Townlong Street 456, Boston\"\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/fhir/r4/Organization",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"fhir",
+										"r4",
+										"Organization"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/fhir+json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "201"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Aug 2025 01:00:23 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"resourceType\": \"Organization\",\n    \"id\": \"org-1\",\n    \"identifier\": [\n        {\n            \"value\": \"org-1\"\n        }\n    ],\n    \"name\": \"Organization1\",\n    \"telecom\": [\n        {\n            \"system\": \"phone\",\n            \"value\": \"333-3333\"\n        }\n    ],\n    \"address\": [\n        {\n            \"text\": \"Townlong Street 456, Boston\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Organizations",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3cml0ZXIiLCJyb2xlcyI6WyJXUklURSJdLCJpYXQiOjE3NTQzNTM3OTIsImV4cCI6MTc1NDQ0MDE5Mn0.SUAvL30VwK86gW81Zy3J5Lb-ty51-p7-d2vvt194aQitYfIUgH-Wzyok_aZYxvBBApVMia19Im8TMl5UGE3OhA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/fhir/r4/Organization",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fhir",
+								"r4",
+								"Organization"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Organizations-200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/fhir/r4/Organization",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"fhir",
+										"r4",
+										"Organization"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/fhir+json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "269"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Aug 2025 01:00:29 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"resourceType\": \"Bundle\",\n    \"type\": \"searchset\",\n    \"entry\": [\n        {\n            \"resource\": {\n                \"resourceType\": \"Organization\",\n                \"id\": \"org-1\",\n                \"identifier\": [\n                    {\n                        \"value\": \"org-1\"\n                    }\n                ],\n                \"name\": \"Organization1\",\n                \"telecom\": [\n                    {\n                        \"system\": \"phone\",\n                        \"value\": \"333-3333\"\n                    }\n                ],\n                \"address\": [\n                    {\n                        \"text\": \"Townlong Street 456, Boston\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Organization by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3cml0ZXIiLCJyb2xlcyI6WyJXUklURSJdLCJpYXQiOjE3NTQzNTM3OTIsImV4cCI6MTc1NDQ0MDE5Mn0.SUAvL30VwK86gW81Zy3J5Lb-ty51-p7-d2vvt194aQitYfIUgH-Wzyok_aZYxvBBApVMia19Im8TMl5UGE3OhA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/fhir/r4/Organization/{{orgId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fhir",
+								"r4",
+								"Organization",
+								"{{orgId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Organization by ID-200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/fhir/r4/Organization/{{orgId}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"fhir",
+										"r4",
+										"Organization",
+										"{{orgId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/fhir+json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "201"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Aug 2025 01:01:18 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"resourceType\": \"Organization\",\n    \"id\": \"org-1\",\n    \"identifier\": [\n        {\n            \"value\": \"org-1\"\n        }\n    ],\n    \"name\": \"Organization1\",\n    \"telecom\": [\n        {\n            \"system\": \"phone\",\n            \"value\": \"333-3333\"\n        }\n    ],\n    \"address\": [\n        {\n            \"text\": \"Townlong Street 456, Boston\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Patient",
+			"item": [
+				{
+					"name": "Create Patient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3cml0ZXIiLCJyb2xlcyI6WyJXUklURSJdLCJpYXQiOjE3NTQzNTU4NzksImV4cCI6MTc1NDQ0MjI3OX0.K9boBbBKFT3ZkM9s_R2t3oleGUjG01lOM1FXoX3QAPbDj_xs7mvZA6j5jHhAb7djnvOGzF6mJs6mz2oBAwmycw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"resourceType\": \"Patient\",\n  \"id\": \"pat002\",\n  \"name\": [\n    {\n      \"family\": \"ArmDoeeer\",\n      \"given\": [\"John\", \"Michael\"]\n    }\n  ],\n  \"gender\": \"male\",\n  \"birthDate\": \"1990-02-01\",\n  \"telecom\": [\n    {\n      \"system\": \"phone\",\n      \"value\": \"111-2234\"\n    }\n  ],\n  \"address\": [\n    {\n      \"line\": [\"555 Main St\"]\n    }\n  ],\n  \"managingOrganization\": {\n    \"reference\": \"org-1\"\n  }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/fhir/r4/Patient",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fhir",
+								"r4",
+								"Patient"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Patient-200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"resourceType\": \"Patient\",\n  \"id\": \"pat001\",\n  \"name\": [\n    {\n      \"family\": \"Doe\",\n      \"given\": [\"John\", \"Michael\"]\n    }\n  ],\n  \"gender\": \"male\",\n  \"birthDate\": \"1980-02-01\",\n  \"telecom\": [\n    {\n      \"system\": \"phone\",\n      \"value\": \"555-1234\"\n    }\n  ],\n  \"address\": [\n    {\n      \"line\": [\"123 Main St\"]\n    }\n  ],\n  \"managingOrganization\": {\n    \"reference\": \"org-1\"\n  }\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/fhir/r4/Patient",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"fhir",
+										"r4",
+										"Patient"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/fhir+json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "184"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Aug 2025 01:04:56 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"resourceType\": \"Patient\",\n    \"id\": \"pat001\",\n    \"name\": [\n        {\n            \"family\": \"Doe\",\n            \"given\": [\n                \"John\",\n                \"Michael\"\n            ]\n        }\n    ],\n    \"telecom\": [\n        {\n            \"system\": \"phone\",\n            \"value\": \"555-1234\"\n        }\n    ],\n    \"gender\": \"male\",\n    \"birthDate\": \"1980-02-01\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Patients",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3cml0ZXIiLCJyb2xlcyI6WyJXUklURSJdLCJpYXQiOjE3NTQzNTU2MTAsImV4cCI6MTc1NDQ0MjAxMH0.YHTJ5EwleUXFSyPpdWFplnYgufPkOPc8brK2M2uvsUwT4doKO22ZeB45Td0ZB5r-lHnh_Uoq3o19m8zGY6JGHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/fhir/r4/Patient",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fhir",
+								"r4",
+								"Patient"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Patients-200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/fhir/r4/Patient",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"fhir",
+										"r4",
+										"Patient"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/fhir+json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "252"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Aug 2025 01:05:22 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"resourceType\": \"Bundle\",\n    \"type\": \"searchset\",\n    \"entry\": [\n        {\n            \"resource\": {\n                \"resourceType\": \"Patient\",\n                \"id\": \"pat001\",\n                \"name\": [\n                    {\n                        \"family\": \"Doe\",\n                        \"given\": [\n                            \"John\",\n                            \"Michael\"\n                        ]\n                    }\n                ],\n                \"telecom\": [\n                    {\n                        \"system\": \"phone\",\n                        \"value\": \"555-1234\"\n                    }\n                ],\n                \"gender\": \"male\",\n                \"birthDate\": \"1980-02-01\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Patient by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3cml0ZXIiLCJyb2xlcyI6WyJXUklURSJdLCJpYXQiOjE3NTQzNTU4NzksImV4cCI6MTc1NDQ0MjI3OX0.K9boBbBKFT3ZkM9s_R2t3oleGUjG01lOM1FXoX3QAPbDj_xs7mvZA6j5jHhAb7djnvOGzF6mJs6mz2oBAwmycw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/fhir/r4/Patient/{{patientId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fhir",
+								"r4",
+								"Patient",
+								"{{patientId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Patient by ID-200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/fhir/r4/Patient/{{patientId}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"fhir",
+										"r4",
+										"Patient",
+										"{{patientId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/fhir+json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "184"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Aug 2025 01:06:26 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"resourceType\": \"Patient\",\n    \"id\": \"pat001\",\n    \"name\": [\n        {\n            \"family\": \"Doe\",\n            \"given\": [\n                \"John\",\n                \"Michael\"\n            ]\n        }\n    ],\n    \"telecom\": [\n        {\n            \"system\": \"phone\",\n            \"value\": \"555-1234\"\n        }\n    ],\n    \"gender\": \"male\",\n    \"birthDate\": \"1980-02-01\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Search Patients by Family Name",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3cml0ZXIiLCJyb2xlcyI6WyJXUklURSJdLCJpYXQiOjE3NTQzNTU4NzksImV4cCI6MTc1NDQ0MjI3OX0.K9boBbBKFT3ZkM9s_R2t3oleGUjG01lOM1FXoX3QAPbDj_xs7mvZA6j5jHhAb7djnvOGzF6mJs6mz2oBAwmycw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/fhir/r4/Patient/search?family=Doe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fhir",
+								"r4",
+								"Patient",
+								"search"
+							],
+							"query": [
+								{
+									"key": "family",
+									"value": "Doe"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Search Patients by Family Name-200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/fhir/r4/Patient/search?family=Doe",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"fhir",
+										"r4",
+										"Patient",
+										"search"
+									],
+									"query": [
+										{
+											"key": "family",
+											"value": "Doe"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/fhir+json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "456"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Aug 2025 01:13:00 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"resourceType\": \"Bundle\",\n    \"type\": \"searchset\",\n    \"entry\": [\n        {\n            \"resource\": {\n                \"resourceType\": \"Patient\",\n                \"id\": \"pat001\",\n                \"name\": [\n                    {\n                        \"family\": \"Doe\",\n                        \"given\": [\n                            \"John\",\n                            \"Michael\"\n                        ]\n                    }\n                ],\n                \"telecom\": [\n                    {\n                        \"system\": \"phone\",\n                        \"value\": \"555-1234\"\n                    }\n                ],\n                \"gender\": \"male\",\n                \"birthDate\": \"1980-02-01\"\n            }\n        },\n        {\n            \"resource\": {\n                \"resourceType\": \"Patient\",\n                \"id\": \"pat002\",\n                \"name\": [\n                    {\n                        \"family\": \"ArmDoeeer\",\n                        \"given\": [\n                            \"John\",\n                            \"Michael\"\n                        ]\n                    }\n                ],\n                \"telecom\": [\n                    {\n                        \"system\": \"phone\",\n                        \"value\": \"111-2234\"\n                    }\n                ],\n                \"gender\": \"male\",\n                \"birthDate\": \"1990-02-01\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
